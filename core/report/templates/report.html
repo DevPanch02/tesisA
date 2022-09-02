@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Muisne</title>
+  </head>
+  <body>
+    <img
+      src="https://gadmuisne.gob.ec/web/wp-content/uploads/2019/08/logo-gad-muisne2019_color.png"
+      alt=""
+      width="200px"
+      style="margin: 0; padding: 0"
+    />
+
+    <center>
+      <h1>REPORTE DE NOTIFICACION MUISNE</h1>
+    </center>
+    
+    <table class="table table-bordered" id="data" border="1">
+      <thead>
+        <tr>
+          <th scope="col">RUC</th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">APELLIDO</th>
+          <th scope="col">DESCRIPCION NEGOCIO</th>
+          <th scope="col">RUBRO</th>
+          <th scope="col">VALOR A PAGAR</th>
+          <th scope="col">DESCRIPCION</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in person %}
+        <tr>
+          <td>{{i.RUC}}</td>
+          <td>{{i.nombrerepresentante}}</td>
+          <td>{{i.apellidorepresentante}}</td>
+          <td>{{i.describenegocio}}</td>
+          <td> {{i.rubro_pagado}} </td>
+          <td> {{i.valorpagar}} </td>
+          <td><b>{{i.descripcion}}</b></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+
+  <script>
+    function showTime() {
+      myDate = new Date();
+      hours = myDate.getHours();
+      minutes = myDate.getMinutes();
+      seconds = myDate.getSeconds();
+      if (hours < 10) hours = 0 + hours;
+      if (minutes < 10) minutes = "0" + minutes;
+      if (seconds < 10) seconds = "0" + seconds;
+      $("#HoraActual").text(hours + ":" + minutes + ":" + seconds);
+      setTimeout("showTime()", 1000);
+    }
+  </script>
+</html>

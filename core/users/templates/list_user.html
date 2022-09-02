@@ -1,0 +1,37 @@
+{% extends 'startpage/list.html' %}
+{% block columns %}
+
+<th scope="col">CI</th>
+<th scope="col">NOMBRES</th>
+<th scope="col">APELLIDOS</th>
+<th scope="col">USERNAME</th>
+<th scope="col">EMAIL</th>
+<th scope="col">FECHA REGISTRO</th>
+
+<th scope="col">OPCIONES</th>
+{% endblock %}
+{% block rows %} 
+    {% for i in user %}
+    <tr>
+        
+        <td> {{i.dni}} </td>
+        <td> {{i.first_name}} </td>
+        <td> {{i.last_name}} </td>
+        <td> {{i.username}} </td>
+        <td> {{i.email}} </td>
+        <td> {{i.date_joined}} </td>
+
+
+
+        <td class=" d-flex justify-content-center" >
+            <a href=" {% url 'users:user_update' i.id %} " class="btn btn-ms btn-success  "> <i class="fas fa-edit"></i> </a>
+            <a href=" {% url 'users:user_delete' i.id %}  "  class="btn btn-ms btn-danger  "><i class="fas fa-ban"></i></a>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+
+{% endblock %}
+
+

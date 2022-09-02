@@ -1,0 +1,115 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="#" class="brand-link">
+        <img src="{% static '/img/default/logo2.jpg' %}" alt="logo" class="img-circle" style="height: 36px;">
+        <span class="brand-text font-weight-bold">Panel <i>Muisne</i> </span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                {% if request.user.image  %}
+                    <img src="{{ request.user.get_image }}" class="img-circle" style="height: 33.6px;" alt="User Image">
+                {% else %}
+                    <img src="{% static 'img/default/empty.png' %}" class="img-circle" style="height: 33.6px;" alt="User Image">
+                {% endif %}
+                
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ request.user.get_short_name }}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header"><b>MODULOS</b></li>
+
+                <li class="nav-item">
+                    <a href=" {% url 'home' %} " class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <p>
+                            Inicio
+                        </p>
+                    </a>
+                </li>
+
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a href="{% url 'import' %}" class="nav-link">
+                        <i class="fas fa-file-import"></i>
+                        <p>
+                            Importar
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" {% url 'list_persons' %} " class="nav-link">
+                        <i class="fas fa-list"></i>
+                        <p>
+                            Listar
+                        </p>
+                    </a>
+                </li>
+                {% else %}
+                
+                <li class="nav-item">
+                    <a href=" {% url 'list_persons' %} " class="nav-link">
+                        <i class="fas fa-list"></i>
+                        <p>
+                            Listar
+                        </p>
+                    </a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a href=" {% url 'users:user_list' %} " class="nav-link">
+                        <i class="fas fa-users-cog"></i>
+                        <p>
+                            Personal
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href=" {% url 'ver_datos' %} " class="nav-link">
+                        <i class="fas fa-file-excel"></i>
+                        <p>
+                            Reporte
+                        </p>
+                    </a>
+                </li>
+
+
+                {% if request.user.is_superuser %}
+                <li class="nav-header"><b>ADMINISTRADOR</b></li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            Configuraciones
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href=" # " class="nav-link">
+                                <i class="fas fa-user-edit"></i>
+                                <p>Editar perfil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href=" {% url 'users:cambiarPass' %} " class="nav-link">
+                                <i class="fas fa-key"></i>
+                                <p>Cambiar contrasena</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {% endif %}
+
+
+            </ul>
+        </nav>
+    </div>
+</aside>
